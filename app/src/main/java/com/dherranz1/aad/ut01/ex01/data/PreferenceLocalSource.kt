@@ -1,15 +1,14 @@
 package com.dherranz1.aad.ut01.ex01.data
 
+import android.app.Activity
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
-import com.dherranz1.aad.R
 import com.dherranz1.aad.ut01.ex01.domain.Customer
 
-// El fichero xml generado puede ser accedido por cualquier parte de la aplicacion
+// El fichero xml generado unicamente puede ser accedido por la actividad que se le pasa
 
-class SharedPreferenceLocalSource(val activity: AppCompatActivity) {
+class PreferenceLocalSource(private val activity: Activity) {
 
-    val sharedPref = activity.getSharedPreferences(activity.getString(R.string.preference_ut01ex01), Context.MODE_PRIVATE)
+    val sharedPref = activity.getPreferences(Context.MODE_PRIVATE)
 
     fun saveCustomer(customer: Customer){
 
@@ -37,7 +36,7 @@ class SharedPreferenceLocalSource(val activity: AppCompatActivity) {
         }*/
     }
 
-    fun getCustomer() : Customer{
+    fun getCustomer() : Customer {
 
         return Customer(
             sharedPref.getInt("id",0),
@@ -46,5 +45,4 @@ class SharedPreferenceLocalSource(val activity: AppCompatActivity) {
             sharedPref.getBoolean("is_active", true)
         )
     }
-
 }
