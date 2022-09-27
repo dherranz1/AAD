@@ -27,7 +27,7 @@
         </activity>-->
 
         <activity
-            android:name=".ut01.Ut01Ex01Activity"
+            android:name=".ut01.ex01.presentation.Ut01Ex01Activity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

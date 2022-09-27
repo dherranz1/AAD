@@ -1,10 +1,9 @@
-package com.dherranz1.aad.ut01.data
+package com.dherranz1.aad.ut01.ex01.data
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import com.dherranz1.aad.R
-import com.dherranz1.aad.ut01.Ut01Ex01Activity
-import com.dherranz1.aad.ut01.domain.Customer
+import com.dherranz1.aad.ut01.ex01.domain.Customer
 
 class SharedPreferenceLocalSource(val activity: AppCompatActivity) {
 
