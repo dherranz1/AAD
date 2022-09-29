@@ -10,5 +10,4 @@ import com.dherranz1.aad.ut01.ex01.domain.Customer
 class SharedPreferenceLocalSource(val activity: AppCompatActivity) : PreferenceSource(activity) {
 
     override var sharedPref = activity.getSharedPreferences(activity.getString(R.string.preference_ut01ex01), Context.MODE_PRIVATE)
-
 }
