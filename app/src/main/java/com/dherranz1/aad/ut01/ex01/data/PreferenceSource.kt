@@ -10,6 +10,21 @@ abstract class PreferenceSource (activity: Activity) : IPreferencesSource {
 
     abstract var sharedPref : SharedPreferences
 
+    override fun saveFirstOpened(){
+
+        val editor = sharedPref.edit()
+
+        editor.putBoolean("first-opened", true)
+
+        editor.apply() // asincrono
+
+    }
+
+    override fun getFirstOpened(): Boolean {
+
+        return sharedPref.getBoolean("first-opened", false)
+    }
+
     override fun saveCustomer(customer: Customer){
 
         val editor = sharedPref.edit()
