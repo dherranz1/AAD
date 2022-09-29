@@ -36,5 +36,4 @@ class Ut01Ex01Activity : AppCompatActivity(){
         val spCustomer = PreferenceLocalSourceI(this)
         initXmlPreferences(spCustomer)
     }
-
 }

@@ -45,5 +45,4 @@ abstract class PreferenceSource (activity: Activity) : IPreferencesSource {
             sharedPref.getBoolean("is_active", true)
         )
     }
-
 }
