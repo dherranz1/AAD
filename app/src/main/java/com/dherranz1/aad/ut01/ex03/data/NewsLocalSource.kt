@@ -27,6 +27,7 @@ class NewsLocalSource (val sharedPref: SharedPreferences){
         return gson.fromJson(jsonNews, News::class.java)
     }
 
+
     fun setNewsList(newsList: MutableList<News>){
         val iterador = newsList.iterator()
 
@@ -34,14 +35,35 @@ class NewsLocalSource (val sharedPref: SharedPreferences){
             setNews(iterador.next())
 
         // Sin iterador
-        //newsList.forEach()
+        //newsList.forEach{}
+    }
+
+    fun findAll() : MutableList<News>{
+        val newsList = mutableListOf<News>()
+        val gson = Gson()
+        sharedPref.all.forEach{ entry ->
+            val news = gson.fromJson(entry.value as String, News::class.java)
+            newsList.add(news)
+        }
+
+        return newsList
     }
 /*
-    fun findAll() : MutableList<News>{
-        // Buscar y devolver todas las noticias
-        val mapa = sharedPref.all
-        //return mutableListOf()
+    fun findAllV2(): MutableList<News>{
+        val gson = Gson()
+        val jsonNews = sharedPref.getString("ALL", "")
+
+        //val typeNews : Type = object : TypeToken<MutableList<News>>
+        // Completar
     }
-    */
+
+ */
+
+    fun findAllKotlin() : MutableList<News>{
+        val gson = Gson()
+        return sharedPref.all.map { entry ->
+            gson.fromJson(entry.value as String, News::class.java)
+        }.toMutableList()
+    }
 
 }
