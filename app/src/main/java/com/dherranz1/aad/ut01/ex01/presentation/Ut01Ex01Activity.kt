@@ -14,8 +14,8 @@ class Ut01Ex01Activity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ut01ex01)
 
-        initSharedPreferences()
-        initPreferences()
+        //initSharedPreferences()
+        //initPreferences()
     }
 
     private fun initXmlPreferences(IPreferencesSource: IPreferencesSource) {
