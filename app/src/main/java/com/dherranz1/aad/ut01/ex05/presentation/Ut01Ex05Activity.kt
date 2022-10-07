@@ -19,6 +19,9 @@ class Ut01Ex05Activity : AppCompatActivity() {
     }
 
     private fun init(){
+
+        Log.d("@dev","Actividad 5")
+
         //Obtain all users from data layer
 
         val sharedPreferences = this.getSharedPreferences(
@@ -26,6 +29,55 @@ class Ut01Ex05Activity : AppCompatActivity() {
             Context.MODE_PRIVATE
         )
 
+        val userRepository = UserRepository(
+            UsersLocalDataSource(sharedPreferences),
+            UsersRemoteDataSource()
+        )
+
+        // Partiendo de un sharedPreferences inexistente
+        Thread{
+
+            val user = userRepository.getUserById(2)
+
+            // Peticion de un unico usuario (Peticion a remoto por no haber local)
+            if(user!=null)
+                Log.d("@dev","Usuario: $user")
+            else
+                Log.d("@dev","Usuario no encontrado")
+
+
+            // Peticion de todos los usuarios (Peticion a remoto por no haber local)
+            Log.d("@dev","=====================")
+            Log.d("@dev","= Lista de usuarios =")
+            Log.d("@dev","=====================")
+
+            var userList = userRepository.getUsers()
+            userList.forEach{ user: User ->
+                Log.d("@dev","Usuario: $user")
+            }
+
+            // Guardando en local los usuarios
+            userRepository.saveUsers(userList)
+
+            Log.d("@dev","=====================")
+
+            // Recuperando los usuarios
+            userRepository.getUsers().forEach{ user : User ->
+                Log.d("@dev", "Usuario: $user")
+            }
+
+            Log.d("@dev","=====================")
+            Log.d("@dev","Eliminando usuario 3")
+            Log.d("@dev","=====================")
+            userRepository.removeUser(3)
+
+            // Recuperando los usuarios para verificar que se ha eliminado el usuario
+            userRepository.getUsers().forEach{ user : User ->
+                Log.d("@dev", "Usuario: $user")
+            }
+
+        }.start()
+/*
         val listaUsuarios = mutableListOf<User>(
             User(1,"User1","UserName1"),
             User(2,"User2","UserName2"),
@@ -33,20 +85,7 @@ class Ut01Ex05Activity : AppCompatActivity() {
             User(4,"User4","UserName4")
         )
 
-        val userRepository = UserRepository(
-            UsersLocalDataSource(sharedPreferences),
-            UsersRemoteDataSource()
-        )
-
-        userRepository.saveUsers(listaUsuarios)
-
-        Log.d("@dev","Actividad 5")
-
-        /*
-        val users = userRepository.getUsers()
-
-         */
-        //Log.d("@dev", "Users: $users")
+ */
 
     }
 

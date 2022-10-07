@@ -11,24 +11,26 @@ class UserRepository (val localSource: UsersLocalDataSource,
     /**
      *  First from local and then from remote
      */
-    /*
-    fun getUsers(){
-        var users = localSource.getUsers()
-        if(users == null){
-            users = remoteDataSource.getUsers()
-            localSource.saveUsers(users)
-        }
-    }
 
-     */
+    fun getUsers() : List <User>{
+
+        var users = localSource.getUsers()
+
+        if(users.isEmpty())
+            users = remoteDataSource.getUsers()
+
+        return users
+    }
 
     fun saveUsers(userList : List<User>) =
         localSource.saveUsers(userList)
 
-/*
-    fun getUserById(userId : Int) : User {
-        // TODO : verificar en local, si no, en remoto
-    }
-*/
-    fun removeUser(userId : Int){}
+
+    fun getUserById(userId : Int) : User? =
+        localSource.getUserById(userId)?: remoteDataSource.getUserById(userId)
+
+
+    fun removeUser(userId : Int) = localSource.removeUser(userId)
+
+
 }
