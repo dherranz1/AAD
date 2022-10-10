@@ -1,8 +1,7 @@
 package com.dherranz1.aad.ut01.ex05.data.remote
 
-import com.dherranz1.aad.ut01.ex05.domain.User
+import com.dherranz1.aad.ut01.ex05.data.remote.models.UserApiModel
 import retrofit2.Call
-import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -10,9 +9,9 @@ import retrofit2.http.Path
 interface UserApiService {
 
     @GET("users/")
-    fun getUsers() : Call<List<User>>
+    fun getUsers() : Call<List<UserApiModel>>
 
     @GET("users/{id}")
-    fun getUserById(@Path("id") id : Int) : Call<User>
+    fun getUserById(@Path("id") id : Int) : Call<UserApiModel>
 
 }

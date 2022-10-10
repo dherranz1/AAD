@@ -8,7 +8,6 @@ import com.dherranz1.aad.R
 import com.dherranz1.aad.ut01.ex05.data.UserRepository
 import com.dherranz1.aad.ut01.ex05.data.local.UsersLocalDataSource
 import com.dherranz1.aad.ut01.ex05.data.remote.UsersRemoteDataSource
-import com.dherranz1.aad.ut01.ex05.domain.User
 
 class Ut01Ex05Activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,7 +36,7 @@ class Ut01Ex05Activity : AppCompatActivity() {
         // Partiendo de un sharedPreferences inexistente
         Thread{
 
-            val user = userRepository.getUserById(2)
+            val user = userRepository.getUserById(1)
 
             // Peticion de un unico usuario (Peticion a remoto por no haber local)
             if(user!=null)
@@ -52,7 +51,7 @@ class Ut01Ex05Activity : AppCompatActivity() {
             Log.d("@dev","=====================")
 
             var userList = userRepository.getUsers()
-            userList.forEach{ user: User ->
+            userList.forEach{ user ->
                 Log.d("@dev","Usuario: $user")
             }
 
@@ -62,7 +61,7 @@ class Ut01Ex05Activity : AppCompatActivity() {
             Log.d("@dev","=====================")
 
             // Recuperando los usuarios
-            userRepository.getUsers().forEach{ user : User ->
+            userRepository.getUsers().forEach{ user  ->
                 Log.d("@dev", "Usuario: $user")
             }
 
@@ -72,22 +71,11 @@ class Ut01Ex05Activity : AppCompatActivity() {
             userRepository.removeUser(3)
 
             // Recuperando los usuarios para verificar que se ha eliminado el usuario
-            userRepository.getUsers().forEach{ user : User ->
+            userRepository.getUsers().forEach{ user ->
                 Log.d("@dev", "Usuario: $user")
             }
 
         }.start()
-/*
-        val listaUsuarios = mutableListOf<User>(
-            User(1,"User1","UserName1"),
-            User(2,"User2","UserName2"),
-            User(3,"User3","UserName3"),
-            User(4,"User4","UserName4")
-        )
-
- */
 
     }
-
-
 }
