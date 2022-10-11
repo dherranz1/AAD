@@ -16,15 +16,15 @@ class UserRepository (val localSource: UsersLocalDataSource,
 
         var users = localSource.getUsers()
 
-        if(users.isEmpty())
+        if(users.isEmpty()){
             users = remoteDataSource.getUsers()
-
-        // Guardar usuarios con el save
+            saveUsers(users)
+        }
 
         return users
     }
 
-    fun saveUsers(userList : List<UserApiModel>) =
+    private fun saveUsers(userList : List<UserApiModel>) =
         localSource.saveUsers(userList)
 
 
