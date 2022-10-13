@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -15,6 +15,14 @@
         android:theme="@style/Theme.AAD2022"
         tools:targetApi="31">
         <!--
+        <activity
+            android:name=".Ut01ExFormUserData"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
         <activity
             android:name="..Ut01Ex04aActivity"
             android:exported="false">
@@ -54,9 +62,8 @@
                 android:value="" />
         </activity>
         -->
-
         <activity
-            android:name=".ut01.uses_counter.presentation.Ut01UsesCounterActivity"
+            android:name=".ut01.ex_form_user_data.presentation.Ut01ExFormUserData"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
