@@ -1,4 +1,4 @@
-package com.dherranz1.aad.ut01.ex05.presentation
+package com.dherranz1.aad.ut01.uses_counter.presentation
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -20,8 +20,7 @@ class Ut01UsesCounterActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.activity_ut01_ex05)
-        setContentView(R.layout.layout_contador_usos)
+        setContentView(R.layout.activity_ut01_uses_counter)
 
         init()
     }
@@ -63,8 +62,4 @@ class Ut01UsesCounterActivity : AppCompatActivity() {
             updateCounterTextView(getCounterRepository().getCounter())
         }
     }
-
 }
-
-
-
