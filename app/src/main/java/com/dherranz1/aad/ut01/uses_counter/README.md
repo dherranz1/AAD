@@ -30,7 +30,8 @@ Sharedpreferences, LinearLayaout, TextView, Button, Snackbar
 ## Screenshots or Video
 
 <!-- Captura de pantalla de la consola -->
-https://github.com/dherranz1/AAD/blob/uses_counter/app/src/main/java/com/dherranz1/aad/ut01/uses_counter/Screenshot_20221013_142539.png
+https://github.com/dherranz1/AAD/blob/uses_counter/app/src/main/java/com/dherranz1/aad/ut01/uses_counter/Screenshot_20221013_142539.png![Screenshot_20221013_142539](https://user-images.githubusercontent.com/114154511/195597793-3c219ee9-3456-411c-b988-edb0d45f60b8.png)
+
 
 ## Objetivos
 
