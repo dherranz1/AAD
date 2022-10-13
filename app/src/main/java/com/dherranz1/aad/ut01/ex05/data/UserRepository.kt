@@ -2,7 +2,7 @@ package com.dherranz1.aad.ut01.ex05.data
 
 import com.dherranz1.aad.ut01.ex05.data.local.UsersLocalDataSource
 import com.dherranz1.aad.ut01.ex05.data.remote.UsersRemoteDataSource
-import com.dherranz1.aad.ut01.ex05.domain.User
+import com.dherranz1.aad.ut01.ex05.data.remote.models.UserApiModel
 
 class UserRepository (val localSource: UsersLocalDataSource,
                       val remoteDataSource: UsersRemoteDataSource
@@ -11,24 +11,28 @@ class UserRepository (val localSource: UsersLocalDataSource,
     /**
      *  First from local and then from remote
      */
-    /*
-    fun getUsers(){
+
+    fun getUsers() : List <UserApiModel>{
+
         var users = localSource.getUsers()
-        if(users == null){
+
+        if(users.isEmpty()){
             users = remoteDataSource.getUsers()
-            localSource.saveUsers(users)
+            saveUsers(users)
         }
+
+        return users
     }
 
-     */
-
-    fun saveUsers(userList : List<User>) =
+    private fun saveUsers(userList : List<UserApiModel>) =
         localSource.saveUsers(userList)
 
-/*
-    fun getUserById(userId : Int) : User {
-        // TODO : verificar en local, si no, en remoto
-    }
-*/
-    fun removeUser(userId : Int){}
+
+    fun getUserById(userId : Int) : UserApiModel? =
+        localSource.getUserById(userId)?: remoteDataSource.getUserById(userId)
+
+
+    fun removeUser(userId : Int) = localSource.removeUser(userId)
+
+
 }
