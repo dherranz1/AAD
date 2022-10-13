@@ -24,11 +24,11 @@ class UsersLocalDataSource(private val sharedPreferences: SharedPreferences) {
     }
 
 
-    fun saveAll(listaUsuarios : List<UserApiModel>){
-        listaUsuarios.forEach{ user ->
+    fun saveAll(userList : List<UserApiModel>) =
+        userList.forEach{ user ->
             create(user)
         }
-    }
+
 
     fun create(user: UserApiModel){
         val json = gson.toJson(user, UserApiModel::class.java)
@@ -43,7 +43,7 @@ class UsersLocalDataSource(private val sharedPreferences: SharedPreferences) {
         gson.fromJson(json, UserApiModel::class.java)
     }
 
-    fun update(user : UserApiModel)=
+    fun update(user : UserApiModel) =
         create(user)
 
 }
