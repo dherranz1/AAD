@@ -56,7 +56,7 @@
         -->
 
         <activity
-            android:name=".ut01.ex05.presentation.Ut01Ex05Activity"
+            android:name=".ut01.uses_counter.presentation.Ut01UsesCounterActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
