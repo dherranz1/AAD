@@ -1,22 +1,20 @@
 package com.dherranz1.aad.ut01.ex05.presentation
 
 import android.content.Context
-import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import android.widget.TextView
 import com.dherranz1.aad.R
-import com.dherranz1.aad.ut01.ex05.data.CounterRepository
 import com.dherranz1.aad.ut01.ex05.data.UserRepository
-import com.dherranz1.aad.ut01.ex05.data.local.OpenedLocalDataSource
 import com.dherranz1.aad.ut01.ex05.data.local.UsersLocalDataSource
 import com.dherranz1.aad.ut01.ex05.data.remote.UsersRemoteDataSource
+
 
 class Ut01Ex05Activity : AppCompatActivity() {
 
     var openedTimes = 0
+    private val MAX_TIMES = 5
+    private val USE_COUNTER_MESSAGE = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,13 +23,9 @@ class Ut01Ex05Activity : AppCompatActivity() {
 
         init()
 
-
-
     }
 
     private fun init(){
-
-        Log.d("@dev","Actividad 5")
 
         // Sharedpreferences for users
         val sharedPreferences = this.getSharedPreferences(
@@ -44,49 +38,6 @@ class Ut01Ex05Activity : AppCompatActivity() {
             UsersRemoteDataSource()
         )
 
-
-        // Apartado contador de usos
-        initResetButton()
-
-        openedTimes = getCounterRepository().updateCounter()
-
-        if(openedTimes == 5)
-            Log.d("@dev", "Usado ya 5 veces")
-
-        updateCounterTextView(openedTimes)
-
-    }
-
-
-    fun updateCounterTextView(counter : Int)=
-        findViewById<TextView>(R.id.uses_counter).setText("Número de usos: " + counter.toString())
-
-
-    private fun getCounterSharedPreferences() : SharedPreferences =
-        this.getSharedPreferences(
-            this.getString(R.string.sharedpreferences_counter),
-            Context.MODE_PRIVATE
-        )
-
-    private fun getCounterRepository() : CounterRepository = CounterRepository(OpenedLocalDataSource(getCounterSharedPreferences()))
-
-
-    private fun initResetButton(){
-        val resetButton = findViewById<Button>(R.id.reset_button)
-
-        resetButton.setOnClickListener {
-            getCounterRepository().removeCounter()
-            updateCounterTextView(getCounterRepository().getCounter())
-        }
-    }
-
-
-}
-
-
-
-
-/*
         // Partiendo de un sharedPreferences inexistente
         Thread{
 
@@ -110,8 +61,9 @@ class Ut01Ex05Activity : AppCompatActivity() {
             }
 
             // Guardando en local los usuarios
-            userRepository.saveUsers(userList)
+            //userRepository.saveUsers(userList)
 
+            // Autoguardado en local los usuarios al usar getUsers
             Log.d("@dev","=====================")
 
             // Recuperando los usuarios
@@ -130,6 +82,18 @@ class Ut01Ex05Activity : AppCompatActivity() {
             }
 
         }.start()
+
+
+    }
+
+
+}
+
+
+
+
+/*
+
 
 
          */
