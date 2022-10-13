@@ -12,6 +12,24 @@ class UsersLocalDataSource(private val sharedPreferences: SharedPreferences) {
     private val gson = Gson()
 
 
+    fun readAll() : List<UserApiModel>{
+        val userList = mutableListOf<UserApiModel>()
+        val map = sharedPreferences.all
+
+        map.forEach {
+            userList.add(gson.fromJson(it.value.toString(), UserApiModel::class.java))
+        }
+
+        return userList
+    }
+
+
+    fun saveAll(listaUsuarios : List<UserApiModel>){
+        listaUsuarios.forEach{ user ->
+            create(user)
+        }
+    }
+
     fun create(user: UserApiModel){
         val json = gson.toJson(user, UserApiModel::class.java)
         editor.putString(user.id.toString(), json)
