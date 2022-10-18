@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.dherranz1.aad.R
+import com.dherranz1.aad.ut01.ex05.data.HeroRepository
 import com.dherranz1.aad.ut01.ex05.data.UserRepository
 import com.dherranz1.aad.ut01.ex05.data.local.UsersLocalDataSource
+import com.dherranz1.aad.ut01.ex05.data.remote.HeroesRemoteDataSource
 import com.dherranz1.aad.ut01.ex05.data.remote.UsersRemoteDataSource
 
 
@@ -38,9 +40,21 @@ class Ut01Ex05Activity : AppCompatActivity() {
             UsersRemoteDataSource()
         )
 
+        val heroRepository = HeroRepository(HeroesRemoteDataSource())
+
         // Partiendo de un sharedPreferences inexistente
         Thread{
 
+            val hero = heroRepository.getHeroById(1)
+            val heroes = heroRepository.getHeroes()
+
+            Log.d("@dev","Hero : $hero")
+
+            heroes.forEach { hero ->
+                Log.d("@dev", "Heroe lista : $hero")
+            }
+
+            /*
             val user = userRepository.getUserById(1)
 
             // Peticion de un unico usuario (Peticion a remoto por no haber local)
@@ -80,7 +94,7 @@ class Ut01Ex05Activity : AppCompatActivity() {
             userRepository.getUsers().forEach{ user ->
                 Log.d("@dev", "Usuario: $user")
             }
-
+            */
         }.start()
 
 

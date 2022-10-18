@@ -2,6 +2,7 @@ package com.dherranz1.aad.ut01.ex05.data
 
 import com.dherranz1.aad.ut01.ex05.data.local.UsersLocalDataSource
 import com.dherranz1.aad.ut01.ex05.data.remote.UsersRemoteDataSource
+import com.dherranz1.aad.ut01.ex05.data.remote.models.SuperHero
 import com.dherranz1.aad.ut01.ex05.data.remote.models.UserApiModel
 
 class UserRepository (val localSource: UsersLocalDataSource,
@@ -33,6 +34,5 @@ class UserRepository (val localSource: UsersLocalDataSource,
 
 
     fun removeUser(userId : Int) = localSource.removeUser(userId)
-
 
 }

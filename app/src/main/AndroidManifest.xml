@@ -63,7 +63,7 @@
         </activity>
         -->
         <activity
-            android:name=".ut01.ex_form_user_data.presentation.Ut01ExFormUserData"
+            android:name=".ut01.ex05.presentation.Ut01Ex05Activity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
